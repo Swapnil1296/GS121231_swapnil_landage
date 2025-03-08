@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import StoresPage from './pages/StoresPage';
+import SKUsPage from './pages/SKUsPage';
+import PlanningPage from './pages/PlanningPage';
+import ChartPage from './pages/ChartPage';
+import Navbar from './components/NavBar';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* Top Navigation */}
+      <Navbar />
+      {/* Main Layout: Sidebar + Content */}
+      <div className="flex flex-1">
+        <Sidebar />
+        <main className="flex-1 p-6 overflow-auto">
+          <ErrorBoundary>
+            <Routes>
+              <Route path="/" element={<Navigate to="/stores" />} />
+              <Route path="/stores" element={<StoresPage />} />
+              <Route path="/skus" element={<SKUsPage />} />
+              <Route path="/planning" element={<PlanningPage />} />
+              <Route path="/chart" element={<ChartPage />} />
+            </Routes>
+          </ErrorBoundary>
+        </main>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
