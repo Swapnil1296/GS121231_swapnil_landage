@@ -1,54 +1,34 @@
-# React + TypeScript + Vite
+# Data Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a progressive web app built with React, TypeScript, Tailwind CSS, and D3.js for manipulating and analyzing data. The app includes:
 
-Currently, two official plugins are available:
+- A top navigation bar with a company logo and a placeholder for sign-in/sign-out.
+- A left sidebar for navigation between pages.
+- A **Stores** page to add, update, remove, and reorder stores.
+- A **SKUs** page to add, update, and remove SKUs (including price and cost).
+- A **Planning** page that displays a cross join of Stores and SKUs along with a calendar view (weeks grouped by months) where you can enter sales units. Calculated fields (Sales Dollars, GM Dollars, GM %) are computed with conditional formatting for the GM %.
+- A **Chart** page that uses D3.js to show a dual-axis chart for GM Dollars (bar) and GM % (line) over weeks for a selected store.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Frontend
+- React 19 with TypeScript
+- React Router Dom for routing
+- D3.js for charts
+- Tailwind CSS for styling
+- Heroicons for UI elements
+- jest for testing purpose
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Install Dependencies:**  
+   Run: npm install
+   -this will install all the required dependencies
+2. **To Run the Project :**   
+   Run: npm run dev 
+   -this will run the project in dev mode. click on the link http://localhost:3000/ to open it in browser. 
+3. **To Run the Test cases:**   
+   Run: npm run test  
+   - this will run the test cases for the project.
+   -the result should be: 
+        -Test Suites: 4 passed, 4 total
+        -Tests:       13 passed, 13 total
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
